@@ -7,13 +7,14 @@ import userRoutes from './routes/userRoutes';
 
 AppDataSource.initialize().then(() => {
   const app = express();
+  const port = process.env.PORT || 3000;
   app.use(express.json());
 
   app.use('/api/auth', authRoutes);
   app.use('/api/journal', journalRoutes);
   app.use('/api/user', userRoutes);
 
-  app.listen(3000, () => {
+  app.listen(port, () => {
     console.log('Server is running on port 3000');
   });
 });
