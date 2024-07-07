@@ -48,7 +48,13 @@ export const editJournalEntry = async (req: Request, res: Response) => {
   if (date) entry.date = date;
 
   await AppDataSource.manager.save(entry);
-  res.send('Journal entry updated successfully');
+  res.send({
+    "title": entry.title,
+    "content": entry.content,
+    "category": entry.category,
+    "date": entry.date,
+    "id": entry.id
+  });
 };
 
 export const deleteJournalEntry = async (req: Request, res: Response) => {
@@ -61,5 +67,5 @@ export const deleteJournalEntry = async (req: Request, res: Response) => {
   }
 
   await AppDataSource.manager.remove(entry);
-  res.send('Journal entry deleted successfully');
+  res.send({"id": entry.id});
 };
