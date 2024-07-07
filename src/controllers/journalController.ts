@@ -19,7 +19,13 @@ export const createEntry = async (req: Request, res: Response) => {
   entry.date = new Date(date);
   entry.user = user;
   await AppDataSource.manager.save(entry);
-  res.send('Entry created');
+  res.send({
+      "title": entry.title,
+      "content": entry.content,
+      "category": entry.category,
+      "date": entry.date,
+      "id": entry.id
+  });
 };
 
 export const getEntries = async (req: Request, res: Response) => {
